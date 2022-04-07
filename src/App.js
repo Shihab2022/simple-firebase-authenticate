@@ -2,6 +2,7 @@ import "./App.css";
 import app from "./firebase.init";
 import {
   getAuth,
+  GithubAuthProvider,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
@@ -11,11 +12,12 @@ import { useState } from "react";
 const auth = getAuth(app);
 
 function App() {
-  const provider = new GoogleAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider=new GithubAuthProvider()
   const [user, setUser] = useState({});
 
   const handelGoogleSingIn = () => {
-    signInWithPopup(auth, provider)
+    signInWithPopup(auth,googleProvider)
       .then((result) => {
         const user = result.user;
         setUser(user);
@@ -25,6 +27,18 @@ function App() {
         console.log(error);
       });
   };
+  const handelGithubSignIn=()=>{
+
+
+    signInWithPopup(auth,githubProvider)
+  .then(result=>{
+    const user = result.user;
+    console.log(user);
+  })
+  .catch(error=>{
+    console.log(error);
+  })
+  }
   const handelSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -38,7 +52,13 @@ function App() {
     <div className="App">
       <h1>start simple fire base application</h1>
       {
-        user.email ?    <button onClick={handelSignOut}>Sign out</button> :      <button onClick={handelGoogleSingIn}>Sign with Google</button>
+        user.email ?    <button onClick={handelSignOut}>Sign out</button> : 
+        <>
+          <button onClick={handelGoogleSingIn}>Sign with Google</button>
+          <button onClick={handelGithubSignIn}>Sign with Github</button>
+        
+        </>
+      
       }
 
    
