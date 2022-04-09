@@ -16,6 +16,10 @@ function App() {
   const githubProvider=new GithubAuthProvider()
   const [user, setUser] = useState({});
 
+
+//ay kaj gulo route ar moddomy onno componant ar moday rakay kub sihijay korty parui say bisoy gulo dakakno hoay say module 58 ay
+
+
   const handelGoogleSingIn = () => {
     signInWithPopup(auth,googleProvider)
       .then((result) => {

@@ -11,3 +11,5 @@
  * 9. create google provider
  * 10. use signInWithPopup and pass auth and provider
  * 11. handle .then (if successful) and catch error (if error) 
+
+
